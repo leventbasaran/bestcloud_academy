@@ -19,10 +19,13 @@ def longword():
 
      return json.dumps(result) 
 
-@app.route('/alert' , methods=['POST'] )
-def err_to_json(ex):
+@app.errorhandler(405)
+def resource_not_found(message):
+    return jsonify(message=str(message))
 
-    #return jsonify({"errors": }), 405
+@app.route('/alert', methods=['POST'])
+def get_one_cheese():
+    return jsonify(message)
 
 
 
