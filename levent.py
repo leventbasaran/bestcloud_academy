@@ -1,15 +1,21 @@
 import json
 import requests
+import os
 from flask import Flask, jsonify , request
 from flask_json import FlaskJSON, JsonError, json_response 
+
+
 app = Flask(__name__)
 
+#env_var = os.environ 
+#os.environ['webhook_url'] = 'https://webhook.site/52a618cb-0f1e-4ac7-8b16-4b64b295f932'
 
-webhook_url = 'https://webhook.site/17b407f8-5266-4e83-8305-57d60136995e'
+#data = { 'message': 'http://127.0.0.1:5000/alert' }
 
-data = { 'message': 'http://127.0.0.1:5000/alert' }
 
-r = requests.post(webhook_url, data=json.dumps(data), headers={'Content-Type': 'application/json'})
+
+
+
 
 
 
@@ -34,14 +40,13 @@ def resource_not_found(message):
 @app.route('/alert', methods=['POST'])
 def get_one_cheese():
    if request.method == 'POST':
-    
+     r = requests.post(os.environ['webhook_url'], request.json, headers={'Content-Type': 'application/json'})
      print("received data: ", request.json)
     
      return 'success', 200
-  else:
+   else:
     
       abort(400)
-
 
 
 if __name__ == "__main__":
