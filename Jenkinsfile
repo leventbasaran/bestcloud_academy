@@ -8,7 +8,7 @@ node {
 }
    }
    stage('Build Docker') {
-        build the docker image from the source code using the BUILD_ID parameter in image name
+       // build the docker image from the source code using the BUILD_ID parameter in image name
          sh "docker build -t levent ."
    }
    stage("run docker container"){
