@@ -11,7 +11,7 @@ node {
        // build the docker image from the source code using the BUILD_ID parameter in image name
          sh "docker build -t bcfm:v4 ."
    }
-   stage("run docker container"){
-        sh "docker run --env webhook_url -p 5000:5000 --name bcfmv4 -d bcfm:v4 "
-    }
+  // stage("run docker container"){
+       // sh "docker run --env webhook_url -p 5000:5000 --name bcfmv4 -d bcfm:v4 "
+   // }
 }
