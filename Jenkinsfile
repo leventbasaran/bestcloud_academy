@@ -9,7 +9,7 @@ pipeline {
 	   }
 	   stage('Build Image') {
 	        steps {
-		sh 'pip install -r requirements.txt'
+		sh 'python-pip install -r requirements.txt'
 	        sh 'docker build -t bcfm:v3 .'
 	        }
 	   }
