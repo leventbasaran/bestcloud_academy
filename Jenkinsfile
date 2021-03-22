@@ -12,6 +12,6 @@ node {
          sh "docker build -t bcfm:v4 ."
    }
    stage("run docker container"){
-        sh "sudo docker run --env webhook_url -p 5000:5000 --name bcfmv4 -d bcfm:v4 "
+        sh "docker run --env webhook_url -p 5000:5000 --name bcfmv4 -d bcfm:v4 "
     }
 }
