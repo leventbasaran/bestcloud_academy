@@ -9,8 +9,9 @@ pipeline {
 	   }
 	   stage('Build Image') {
 	        steps {
-	        sh 'docker build -t bcfm:v3 .'
-	        }
+		  docker {
+     	 image 'garyear/bcfmacdemy:latest'
+    }
 	   }
 	   stage('Run Image') {
 	        steps {
