@@ -1,18 +1,16 @@
 pipeline {
-  agent {
-    docker {
-      image 'garyear/bcfmacdemy:latest'
-      sh 'run --env webhook_url -p 5000:5000 --name bcfm -d garyear/bcfmacdemy:latest'
-    }
-
-  }
   stages {
+ stage (' Image Building') {
+         docker.build("garyear/bcfmacdemy:latest")
+    }
+  }
     stage('test') {
       steps {
-       // sh 'run --env webhook_url -p 5000:5000 --name bcfm -d garyear/bcfmacdemy:latest'
+        sh " docker run --env webhook_url -p 5000:5000 --name bcfm -d garyear/bcfmacdemy:latest"
         echo 'test'
       
-      }
-    }
-  }
-}
+      
+     }
+   }
+ }
+
