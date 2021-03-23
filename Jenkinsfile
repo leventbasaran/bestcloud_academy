@@ -9,13 +9,12 @@ pipeline {
 	   }
 	   stage('Build Image') {
 	        steps {
-		sh 'python-pip install -r requirements.txt'
-	        sh 'docker build -t bcfm:v3 .'
+	        sh 'sudo docker build -t bcfm:v3 .'
 	        }
 	   }
 	   stage('Run Image') {
 	        steps {
-	        sh 'docker run --env webhook_url -d -p 5000:5000 --name bcfmv3 bcfm:v3'
+	        sh 'sudo docker run --env webhook_url -d -p 5000:5000 --name bcfmv3 bcfm:v3'
 	        }
 	   }
 	   stage('Testing'){
