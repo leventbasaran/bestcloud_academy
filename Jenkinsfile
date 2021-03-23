@@ -1,26 +1,29 @@
 pipeline {
 	agent any
+	
+	environment {
+        webhook_url = "https://webhook.site/52a618cb-0f1e-4ac7-8b16-4b64b295f932"
+	}
 	    stages {
-	        stage('Clone Repository') {
-	        /* Cloning the repository to our workspace */
+	   stage('Pull Image') {
 	        steps {
-	        checkout scm
+	        sh 'docker pull garyear/bcfmacdemy'
 	        }
 	   }
-	   stage('Build Image') {
-	        steps {
-		  docker {
-     	 image 'garyear/bcfmacdemy:latest'
-    }
-	   }
+	   stage("Env Variables") {
+            steps {
+                sh "printenv"
+            }
+	   }    
 	   stage('Run Image') {
 	        steps {
-	        sh 'docker run --env webhook_url -d -p 5000:5000 --name bcfmv3 garyear/bcfmacdemy'
+	        sh 'docker run --env webhook_url -p 5000:5000 -d garyear/bcfmacdemy'
+
 	        }
 	   }
 	   stage('Testing'){
 	        steps {
-	            echo 'Testing..'
+	            echo 'Oluşturma başarılı.'
 	            }
 	   }
     }
