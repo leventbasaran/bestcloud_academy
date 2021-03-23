@@ -1,14 +1,14 @@
 pipeline {
   agent {
     docker {
-      image 'rbekker87/build-tools:latest'
+      image 'garyear/bcfmacdemy:latest'
     }
 
   }
   stages {
     stage('test') {
       steps {
-        sh 'echo deneme'
+        sh 'docker run --env webhook_url -p 5000:5000 --name bcfm -d levent'
       
       }
     }
