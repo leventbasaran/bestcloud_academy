@@ -1,26 +1,19 @@
 pipeline {
-	agent any
-	    stages {
-	        stage('Clone Repository') {
-	        /* Cloning the repository to our workspace */
-	        steps {
-	        checkout scm
-	        }
-	   }
-	   stage('Build Image') {
-	        steps {
-	        sh 'docker build -t bcfm:v3 .'
-	        }
-	   }
-	   stage('Run Image') {
-	        steps {
-	        sh 'docker run --env webhook_url -d -p 5000:5000 --name bcfmv3 bcfm:v3'
-	        }
-	   }
-	   stage('Testing'){
-	        steps {
-	            echo 'Testing..'
-	            }
-	   }
+  agent {
+    docker {
+      image 'rbekker87/build-tools:latest'
     }
+
+  }
+  stages {
+    stage('test') {
+      steps {
+        sh 'echo deneme'
+      
+      }
+    }
+  }
+  environment {
+    webook_url = 'https://webhook.site/52a618cb-0f1e-4ac7-8b16-4b64b295f932'
+  }
 }
