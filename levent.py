@@ -5,19 +5,13 @@ from flask import Flask, jsonify , request
 from flask_json import FlaskJSON, JsonError, json_response 
 
 
+
 app = Flask(__name__)
 
 #env_var = os.environ 
 #os.environ['webhook_url'] = 'https://webhook.site/52a618cb-0f1e-4ac7-8b16-4b64b295f932'
 
 #data = { 'message': 'http://127.0.0.1:5000/alert' }
-
-
-
-
-
-
-
 
 @app.route('/')
 def index():
@@ -51,4 +45,4 @@ def get_one_cheese():
 
 if __name__ == "__main__":
      
-     app.run( debug=True, port=5000)
+     app.run( debug=True, port=5000,  host="0.0.0.0")
