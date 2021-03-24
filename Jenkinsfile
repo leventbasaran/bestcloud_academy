@@ -7,7 +7,7 @@ pipeline {
 	    stages {
 	   stage('Pull Image') {
 	        steps {
-	        sh 'docker pull garyear/bcfmacdemy'
+	        sh 'docker image -t bcfm .'
 	        }
 	   }
 	   stage("Env Variables") {
@@ -17,7 +17,7 @@ pipeline {
 	   }    
 	   stage('Run Image') {
 	        steps {
-	        sh 'docker run --env webhook_url -p 5000:5000 -d garyear/bcfmacdemy'
+	        sh 'docker run --env webhook_url -p 5000:5000 -d bcfm'
 
 	        }
 	   }
