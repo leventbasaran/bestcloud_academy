@@ -7,7 +7,7 @@ pipeline {
 	    stages {
 	   stage('Pull Image') {
 	        steps {
-	        sh 'docker image -t bcfm .'
+	        sh 'docker build -t bcfm .'
 	        }
 	   }
 	   stage("Env Variables") {
